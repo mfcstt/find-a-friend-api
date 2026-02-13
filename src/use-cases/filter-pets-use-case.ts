@@ -1,5 +1,6 @@
 import type { PetsRepository } from "@/repositories/pets-repository"
 import type { Pet } from "generated/prisma/client"
+import { CityIsRequiredError } from "./errors/city-is-required-error"
 
 interface FilterPetsUseCaseDTO {
   city: string
@@ -25,6 +26,11 @@ export class FilterPetsUseCase {
     independeLevel,
     environment
   }: FilterPetsUseCaseDTO): Promise<FilterPetsUseCaseResponse> {
+
+    if(!city || city.trim() === '' || city === null) {
+      throw new CityIsRequiredError()
+    }
+
     const pets = await this.petsRepository.findByParams({
       city,
       age,

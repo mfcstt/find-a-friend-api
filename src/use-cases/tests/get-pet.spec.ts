@@ -2,14 +2,17 @@ import { InMemoryPetsRepository } from "@/repositories/in-memory/in-memory-pets-
 import { describe } from "vitest";
 import { GetPetUseCase } from "../get-pet-use-case";
 import { makePetFactory } from "../factories/tests/make-pet-factory";
+import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs-repository";
 
 
 describe('Get Pet Use Case', () => {
+  let orgsRepository: InMemoryOrgsRepository
   let petsRepository: InMemoryPetsRepository
   let sut: GetPetUseCase
 
   beforeEach(() => {
-    petsRepository = new InMemoryPetsRepository()
+    orgsRepository = new InMemoryOrgsRepository()
+    petsRepository = new InMemoryPetsRepository(orgsRepository)
     sut = new GetPetUseCase(petsRepository)
   })
 

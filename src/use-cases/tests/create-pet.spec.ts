@@ -13,7 +13,7 @@ describe('Create Pet Use Case', () => {
 
   beforeEach(async () => {
     orgsRepository = new InMemoryOrgsRepository()
-    petsRepository = new InMemoryPetsRepository()
+    petsRepository = new InMemoryPetsRepository(orgsRepository)
     sut = new CreatePetsUseCase(orgsRepository, petsRepository)
   })
   

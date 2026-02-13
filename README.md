@@ -10,7 +10,7 @@ O contato para adoção é feito diretamente via **WhatsApp** com a ORG respons�
 ## ✨ Funcionalidades da Aplicação
 
 - [x] Cadastro de pets  
-- [ ] Listagem de pets disponíveis para adoção por cidade  
+- [x] Listagem de pets disponíveis para adoção por cidade  
 - [x] Filtro de pets por características (idade, porte, energia, etc.)  
 - [x] Visualização dos detalhes de um pet específico  
 - [x] Cadastro de ORGs (organizações)  
@@ -22,13 +22,13 @@ O contato para adoção é feito diretamente via **WhatsApp** com a ORG respons�
 
 As seguintes regras devem ser respeitadas:
 
-- [ ] A cidade é obrigatória para listar os pets  
+- [x] A cidade é obrigatória para listar os pets  
 - [x] Uma ORG deve possuir, obrigatoriamente:
   - Endereço
   - Número de WhatsApp  
 - [x] Todo pet cadastrado deve estar vinculado a uma ORG  
 - [ ] O contato do usuário interessado na adoção é feito diretamente com a ORG via WhatsApp  
-- [ ] Todos os filtros de características do pet são opcionais, **exceto a cidade**  
+- [x] Todos os filtros de características do pet são opcionais, **exceto a cidade**  
 - [ ] Para que uma ORG tenha acesso administrativo à aplicação, ela deve estar autenticada  
 
 ---
