@@ -3,6 +3,7 @@ import crypto from 'node:crypto'
 
 type Overwrite = {
   password?: string
+  city?: string
 }
 
 export function makeOrgFactory(overwrite?: Overwrite) {
@@ -14,7 +15,7 @@ export function makeOrgFactory(overwrite?: Overwrite) {
     whatsapp: faker.phone.number(),
 
     cep: faker.location.zipCode(),
-    city: faker.location.city(),
+    city: overwrite?.city ?? faker.location.city(),
     state: faker.location.state(),
     neighborhood: faker.location.streetAddress(),
     street: faker.location.street(),

@@ -11,7 +11,7 @@ O contato para adoção é feito diretamente via **WhatsApp** com a ORG respons�
 
 - [x] Cadastro de pets  
 - [ ] Listagem de pets disponíveis para adoção por cidade  
-- [ ] Filtro de pets por características (idade, porte, energia, etc.)  
+- [x] Filtro de pets por características (idade, porte, energia, etc.)  
 - [x] Visualização dos detalhes de um pet específico  
 - [x] Cadastro de ORGs (organizações)  
 - [x] Autenticação/login de ORGs no sistema  
