@@ -25,7 +25,7 @@ enum EnergyLevel {
   ALTA
 }
 
-enum IndependencyLevel {
+enum IndependenceLevel {
   BAIXO
   MEDIO
   ALTO
@@ -66,10 +66,10 @@ model Org {
     age Age
     size Size
     energy_level EnergyLevel
-    independency_level IndependencyLevel
+    independence_level IndependenceLevel
     environment Environment
-    pictures String
-    requires String
+    pictures String[]
+    requirements String[]
 
     org_id String
     org Org @relation(fields: [org_id], references: [id])
