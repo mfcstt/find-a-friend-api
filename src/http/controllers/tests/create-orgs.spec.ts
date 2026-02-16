@@ -3,7 +3,7 @@ import { describe } from "vitest";
 import request from "supertest";
 import { makeOrgFactory } from "@/use-cases/factories/tests/make-org-factory";
 
-describe('Create Org (e2e)', () => {
+describe('Create Orgs (e2e)', () => {
 
   beforeAll(async () => {
     app.ready()

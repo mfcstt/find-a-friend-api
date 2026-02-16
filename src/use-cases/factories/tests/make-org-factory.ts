@@ -1,16 +1,18 @@
 import { faker } from '@faker-js/faker'
 import crypto from 'node:crypto'
+import { email } from 'zod'
 
 type Overwrite = {
   password?: string
   city?: string
+  email?: string
 }
 
 export function makeOrgFactory(overwrite?: Overwrite) {
   return {
     id: crypto.randomUUID(),
     author_name: faker.person.fullName(),
-    email: faker.internet.email(),
+    email: overwrite?.email ?? faker.internet.email(),
     password: overwrite?.password ?? faker.internet.password(),
     whatsapp: faker.phone.number(),
 

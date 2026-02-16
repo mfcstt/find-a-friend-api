@@ -6,8 +6,8 @@ interface FilterPetsUseCaseDTO {
   city: string
   age?: 'FILHOTE' | 'ADULTO' | 'IDOSO'
   size?: 'PEQUENO' | 'MEDIO' | 'GRANDE'
-  energyLevel?: 'BAIXA' | 'MEDIA' | 'ALTA'
-  independeLevel?: 'BAIXO' | 'MEDIO' | 'ALTO'
+  energy_level?: 'BAIXA' | 'MEDIA' | 'ALTA'
+  independence_level?: 'BAIXO' | 'MEDIO' | 'ALTO'
   environment?: 'AMBIENTE_AMPLO' | 'APARTAMENTO' | 'AMBIENTE_REDUZIDO'
 }
 
@@ -22,8 +22,8 @@ export class FilterPetsUseCase {
     city,
     age,
     size,
-    energyLevel,
-    independeLevel,
+    energy_level,
+    independence_level,
     environment
   }: FilterPetsUseCaseDTO): Promise<FilterPetsUseCaseResponse> {
 
@@ -35,8 +35,8 @@ export class FilterPetsUseCase {
       city,
       age,
       size,
-      energy_level: energyLevel,
-      independence_level: independeLevel,
+      energy_level,
+      independence_level,
       environment
     })
     return {

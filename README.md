@@ -29,7 +29,7 @@ As seguintes regras devem ser respeitadas:
 - [x] Todo pet cadastrado deve estar vinculado a uma ORG  
 - [ ] O contato do usuário interessado na adoção é feito diretamente com a ORG via WhatsApp  
 - [x] Todos os filtros de características do pet são opcionais, **exceto a cidade**  
-- [ ] Para que uma ORG tenha acesso administrativo à aplicação, ela deve estar autenticada  
+- [X] Para que uma ORG tenha acesso administrativo à aplicação, ela deve estar autenticada  
 
 ---
 
