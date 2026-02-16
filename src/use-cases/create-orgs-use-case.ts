@@ -14,9 +14,6 @@ interface CreateOrgsUseCaseRequest {
   city: string
   neighborhood: string
   street: string
-
-  latitude: number
-  longitude: number
 }
 
 interface CreateOrgsUseCaseResponse {
@@ -36,9 +33,7 @@ export class CreateOrgsUseCase {
     state, 
     city, 
     neighborhood, 
-    street, 
-    latitude, 
-    longitude}: CreateOrgsUseCaseRequest): Promise<CreateOrgsUseCaseResponse> {
+    street}: CreateOrgsUseCaseRequest): Promise<CreateOrgsUseCaseResponse> {
   
   const orgByEmail = await this.orgsRepository.findByEmail(email)
 
@@ -57,9 +52,7 @@ export class CreateOrgsUseCase {
     state,
     city,
     neighborhood,
-    street,
-    latitude,
-    longitude
+    street
   })
 
   return {

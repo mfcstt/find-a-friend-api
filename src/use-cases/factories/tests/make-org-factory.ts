@@ -19,8 +19,5 @@ export function makeOrgFactory(overwrite?: Overwrite) {
     state: faker.location.state(),
     neighborhood: faker.location.streetAddress(),
     street: faker.location.street(),
-
-    latitude: faker.location.latitude(),
-    longitude: faker.location.longitude(),
   }
 }
