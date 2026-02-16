@@ -5,11 +5,12 @@ import { makeOrgFactory } from "@/use-cases/factories/tests/make-org-factory";
 
 describe('Create Orgs (e2e)', () => {
 
-  beforeAll(async () => {
-    app.ready()
+  beforeEach(async () => {
+    await app.ready()
   })
+
   afterAll(async () => {
-    app.close()
+    await app.close()
   })
 
 

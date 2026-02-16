@@ -1,6 +1,5 @@
-import type { Org } from "generated/prisma/client";
 import type { OrgCreateInput } from "generated/prisma/models";
-import type { OrgsRepository } from "../orgs-repository";
+import { OrgsRepository } from "../orgs-repository";
 import { prisma } from "@/lib/prisma";
 
 

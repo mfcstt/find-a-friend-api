@@ -5,12 +5,12 @@ import { makeOrgFactory } from "@/use-cases/factories/tests/make-org-factory"
 
 describe('Authenticate Orgs (e2e)', () => {
 
-  beforeEach(()=> {
-    app.ready()
+    beforeEach(async () => {
+    await app.ready()
   })
 
-  afterAll(()=> {
-    app.close()
+  afterAll(async () => {
+    await app.close()
   })
 
   it('should be able to authenticate a org', async () => {
