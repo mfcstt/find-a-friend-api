@@ -1,225 +1,174 @@
-import {
-  Form,
-  redirect,
-  useActionData,
-  useNavigation,
-} from "react-router";
-
+import * as React from "react";
+import { Eye, EyeOff } from "lucide-react";
+import { Link } from "react-router";
 
 import type { Route } from "./+types/orgs.new";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
+
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
-import { Label } from "~/components/ui/label";
 
-const API_URL = process.env.API_URL ?? "http://localhost:3333";
+const bannerRegister = "/banner-register.png";
+const mapImage =
+  "https://www.figma.com/api/mcp/asset/a1443a7c-7e4e-4d03-95f8-960d5d49a233";
 
-type ActionResponse = {
-  error?: string;
-  success?: boolean;
-};
-
-const createJsonResponse = (data: ActionResponse, init?: ResponseInit) => {
-  return new Response(JSON.stringify(data), {
-    ...init,
-    headers: {
-      "Content-Type": "application/json",
-      ...(init?.headers ?? {}),
-    },
-  });
-};
-
-export async function action({ request }: Route.ActionArgs) {
-  const formData = await request.formData();
-  const payload = {
-    author_name: String(formData.get("author_name") ?? "").trim(),
-    email: String(formData.get("email") ?? "").trim(),
-    password: String(formData.get("password") ?? "").trim(),
-    whatsapp: String(formData.get("whatsapp") ?? "").trim(),
-    cep: String(formData.get("cep") ?? "").trim(),
-    state: String(formData.get("state") ?? "").trim(),
-    city: String(formData.get("city") ?? "").trim(),
-    neighborhood: String(formData.get("neighborhood") ?? "").trim(),
-    street: String(formData.get("street") ?? "").trim(),
-  };
-
-
-
-
-
-  try {
-    const response = await fetch(`${API_URL}/orgs`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok) {
-      let message = "Nao foi possivel criar a org.";
-      try {
-        const data = (await response.json()) as { message?: string };
-        if (data?.message) {
-          message = data.message;
-        }
-      } catch {
-        // Ignore JSON parsing errors from non-JSON responses.
-      }
-
-      return createJsonResponse(
-        { error: message },
-        { status: response.status || 400 }
-      );
-    }
-
-    return redirect("/welcome");
-  } catch (error) {
-    return createJsonResponse(
-      {
-        error: "Nao foi possivel conectar ao servidor.",
-      },
-      { status: 500 }
-    );
-  }
-}
-
-export default function NewOrg() {
-  const actionData = useActionData<ActionResponse>();
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === "submitting";
-
+export function Register() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 px-4 py-12">
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-8">
-        <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">
-            Cadastro
-          </p>
-          <h1 className="mt-3 text-3xl font-semibold text-slate-900">
-            Cadastre sua org
-          </h1>
-          <p className="mt-2 text-sm text-slate-500">
-            Preencha os dados para habilitar sua org a cadastrar pets.
-          </p>
-        </div>
+    <div className="bg-white min-h-screen px-6 py-12 font-['Nunito'] lg:px-16">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 lg:flex-row lg:items-start lg:gap-16">
+        
+        <aside className="flex flex-1 justify-center">
+          <div className="flex w-full max-w-[488px] items-end justify-center overflow-hidden rounded-[20px] bg-[#f15156] px-8 py-10 text-white lg:min-h-[661px]">
+            <img
+              alt="Find A Friend"
+              className="w-full max-w-[400px] object-contain"
+              src={bannerRegister}
+            />
+          </div>
+        </aside>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Dados da org</CardTitle>
-            <CardDescription>
-              As informacoes serao usadas para contato e localizacao.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form method="post" className="space-y-6">
-              <section className="grid gap-4 md:grid-cols-2">
+        <section className="flex w-full flex-1 flex-col items-center lg:items-start">
+          <div className="w-full max-w-lg">
+            <h1 className="text-center text-[40px] font-bold leading-tight text-[#0d3b66] lg:text-left lg:text-[54px]">
+              Cadastre sua organização
+            </h1>
+
+            <form className="mt-10 flex flex-col gap-6">
+
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-[#0d3b66]">
+                  Nome do responsável
+                </label>
+                <Input
+                  placeholder="Antonio Bandeira"
+                  className="h-16 rounded-[10px] border-[#d3e2e5] bg-[#f5f8fa] px-4 text-lg text-[#0d3b66]"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-[#0d3b66]">
+                  Email
+                </label>
+                <Input
+                  type="email"
+                  placeholder="nome@email.com"
+                  className="h-16 rounded-[10px] border-[#d3e2e5] bg-[#f5f8fa] px-4 text-lg text-[#0d3b66]"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-[#0d3b66]">
+                  CEP
+                </label>
+                <Input
+                  placeholder="13254-000"
+                  className="h-16 rounded-[10px] border-[#d3e2e5] bg-[#f5f8fa] px-4 text-lg text-[#0d3b66]"
+                />
+              </div>
+
+              <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="author_name">Nome do responsavel</Label>
+                  <label className="text-sm font-semibold text-[#0d3b66]">
+                    Endereço
+                  </label>
                   <Input
-                    id="author_name"
-                    name="author_name"
-                    placeholder="Maria Silva"
-                    required
+                    placeholder="Rua do meio"
+                    className="h-16 rounded-[10px] border-[#d3e2e5] bg-[#f5f8fa] px-4 text-lg text-[#0d3b66]"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="org@email.com"
-                    required
-                  />
+
+                <div
+                  className="relative h-36 overflow-hidden rounded-[20px] border border-dashed border-[#0d3b66]/50 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${mapImage})` }}
+                >
+                  <div className="absolute inset-0 bg-[#0d3b66]/20" />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password">Senha</Label>
+              </div>
+
+              <div className="grid gap-4 lg:grid-cols-[1.2fr_1.2fr_0.6fr]">
+                <Input
+                  placeholder="Bairro"
+                  className="h-16 rounded-[10px] border-[#d3e2e5] bg-[#f5f8fa] px-4 text-lg text-[#0d3b66]"
+                />
+                <Input
+                  placeholder="Cidade"
+                  className="h-16 rounded-[10px] border-[#d3e2e5] bg-[#f5f8fa] px-4 text-lg text-[#0d3b66]"
+                />
+                <Input
+                  placeholder="UF"
+                  className="h-16 rounded-[10px] border-[#d3e2e5] bg-[#f5f8fa] px-4 text-lg text-[#0d3b66]"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-[#0d3b66]">
+                  Whatsapp
+                </label>
+                <Input
+                  placeholder="81 91234-5678"
+                  className="h-16 rounded-[10px] border-[#d3e2e5] bg-[#f5f8fa] px-4 text-lg text-[#0d3b66]"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-[#0d3b66]">
+                  Senha
+                </label>
+                <div className="relative">
                   <Input
-                    id="password"
-                    name="password"
                     type="password"
                     placeholder="********"
-                    required
+                    className="h-16 rounded-[10px] border-[#d3e2e5] bg-[#f5f8fa] px-4 pr-12 text-lg text-[#0d3b66]"
                   />
+                  <button
+                    type="button"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#0d3b66]/70"
+                  >
+                    <Eye className="size-5" />
+                  </button>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="whatsapp">WhatsApp</Label>
-                  <Input
-                    id="whatsapp"
-                    name="whatsapp"
-                    placeholder="(11) 99999-0000"
-                    required
-                  />
-                </div>
-              </section>
+              </div>
 
-              <section className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="cep">CEP</Label>
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-[#0d3b66]">
+                  Confirmar senha
+                </label>
+                <div className="relative">
                   <Input
-                    id="cep"
-                    name="cep"
-                    placeholder="00000-000"
-                    required
+                    type="password"
+                    placeholder="********"
+                    className="h-16 rounded-[10px] border-[#d3e2e5] bg-[#f5f8fa] px-4 pr-12 text-lg text-[#0d3b66]"
                   />
+                  <button
+                    type="button"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#0d3b66]/70"
+                  >
+                    <EyeOff className="size-5" />
+                  </button>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="state">Estado</Label>
-                  <Input
-                    id="state"
-                    name="state"
-                    placeholder="SP"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="city">Cidade</Label>
-                  <Input id="city" name="city" required />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="neighborhood">Bairro</Label>
-                  <Input id="neighborhood" name="neighborhood" required />
-                </div>
-                <div className="space-y-2 md:col-span-2">
-                  <Label htmlFor="street">Rua</Label>
-                  <Input id="street" name="street" required />
-                </div>
-              </section>
+              </div>
 
-              {actionData?.error ? (
-                <div className="rounded-md border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-                  {actionData.error}
-                </div>
-              ) : null}
-              {actionData?.success ? (
-                <div className="rounded-md border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-                  Org criada com sucesso.
-                </div>
-              ) : null}
+              <Button
+                type="submit"
+                className="h-[72px] w-full rounded-[20px] bg-[#0d3b66] text-lg font-extrabold text-white hover:bg-[#0b3156]"
+              >
+                Cadastrar
+              </Button>
 
-              <CardFooter className="px-0">
-                <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <span className="text-xs text-slate-500">
-                    Use os mesmos dados para autenticar depois.
-                  </span>
-                  <Button type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? "Enviando..." : "Criar org"}
-                  </Button>
-                </div>
-              </CardFooter>
-            </Form>
-          </CardContent>
-        </Card>
+              <Link
+                to="/orgs/login"
+                className="text-center text-lg font-extrabold text-[#0d3b66] underline"
+              >
+                Já possui conta?
+              </Link>
+
+            </form>
+          </div>
+        </section>
       </div>
-    </main>
+    </div>
   );
+}
+
+export default function OrgsNew(_props: Route.ComponentProps) {
+  return <Register />;
 }
