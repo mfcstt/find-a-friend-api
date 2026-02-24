@@ -5,6 +5,7 @@ export default [
 	route("orgs/new", "routes/orgs.new.tsx"),
 	route("orgs/login", "routes/orgs.login.tsx"),
 	route("pets/new", "routes/pets.new.tsx"),
-	route("pet/", "routes/pet.profile.tsx"),
+	route("pets/mine", "routes/pets.mine.tsx"),
+	route("pet/:petId", "routes/pet.profile.tsx"),
 ] satisfies RouteConfig;
 
