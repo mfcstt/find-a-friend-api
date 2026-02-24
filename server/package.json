@@ -10,7 +10,7 @@
     "dev": "tsx src/server.ts",
     "test": "vitest run --project unit",
     "test:e2e": "vitest run --project e2e",
-    "build": "tsup src --out-dir build"
+    "build": "tsup src --format esm --out-dir build"
   },
   "repository": {
     "type": "git",
